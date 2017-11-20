@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+	/*
+		//마우스 이벤트
+		
+		- onclick : 클릭
+		- ondbclick : 더블클릭
+		- onmousedown : 마우스 버튼을 누를 때
+		- onmouseup : 마우스 버튼을 뗄 때
+		- onmousemove : 마우스를 움직일 떄
+		- onmouseover : 마우스를 위에 올릴 때
+		- onmouseout : 마우스가 벗어남
+		- ondrag : 마우스 드래그
+
+		//키보드 이벤트
+		
+		- onkeyup : 키보드 버튼을 뗄 때
+		- onkeydown : 키보드 버튼을 누르자 마자
+		- onkeypress : = onkeydown
+		
+		// 기타 이벤트
+		
+		- onchange : 선택이 변경됨
+		- onload : 로드됨
+	*/
+
+	$(document).ready(function(){
+		$("#baby").on("click", function(){
+			$("#baby").css("width", "100px");
+		})
+		
+		$("#baby").on("mousemove", function(){
+			console.log("mousemove");
+		})
+		
+		$("#baby").mouseover(function(){
+			$("#baby").css("opacity","0.5");
+		}).mouseout(function(){
+			$("#baby").css("opacity","1");
+		});
+/* 
+		// .으로 바로 연결해서 사용할 수도 있다.
+		
+		$("#baby").mouseout(function(){
+			$("#baby").css("opacity","1");
+		})
+ */		
+	});
+	
+</script>
+
+</head>
+<body>
+	<img id="baby" src="../../img/baby.jpg">
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	/* 태그 선택자 */
+	li{
+		list-style:none;
+	}
+	
+	/* 클래스 선택자 */
+	.abc{
+		color:#ff00ff;
+	}
+	
+	/* 아이디 선택자 */
+	#my{
+		margin-left : 10px;
+	}
+	
+	/* 속성 선택자 */
+	[title]{
+		text-decoration: underline;
+	}
+
+	[title="1"]{
+		text-decoration: underline;
+	}
+	
+	/* 의사 클래스 */
+	li:hover{
+		font-weight:bold;
+	}
+	
+	/* 자식 자손 관계 */
+	li > p{
+		border: 2px solid aqua;
+	}
+	
+	li td{
+		border: 2px solid red;
+	}
+	
+	/* 선택자 조합 */
+	p.abc{
+		font-family:굴림;
+	}
+	
+	/* 다수 선택자 */
+	td, p{
+		background-color: gray;
+	}
+	
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+/* 	
+ * 
+ 	window.onload(function(){
+ 		
+ 	})
+ 	
+ 	$(document).ready(function(){
+	});
+ */
+ 
+ 	$(function(){
+ 		//태그 선택자
+ 		$("li").css("listStyle", "none");
+ 		
+ 		//클래스 선택자
+ 		$(".abc").css("color", "#ff00ff");
+ 		
+ 		//속성 선택자
+ 		$("[title]").css("text-decoration", "underline");
+ 		$("[title = '2']").text("보우우우하하하사사사사사사");
+ 		
+ 		//다수 선택자
+ 		$("td, p").css('background-color','gray');
+ 		
+ 		//조건 - jquery방식으로 태그들을 선택할 경우 무조건 jquery 함수만 사용 가능
+ 		
+ 		var my_li = $("li"); //jquery 객체 ----- 두개는 다르다.
+ 		var my_li2 = document.getElementsByTagName('li');// js 객체
+ 		
+ 	});	
+</script>
+
+</head>
+<body>
+	<ul>
+		<li>동해물과</li>
+		<li>백두산이</li>
+		<li class="abc">마르고</li>
+		<li class="def">닳도록</li>
+		<li title="1">하느님이</li>
+		<li title="2">보우하사</li>
+	</ul>
+
+	<ul>
+		<li>동해물과</li>
+		<li class="abc">백두산이</li>
+		<li title="1">마르고</li>
+		<li title="2">닳도록</li>
+		<li id="my">우리</li>
+		<li>나라만세</li>
+		<li>
+			<p>zzz</p>
+			<table>
+				<tr>
+					<td>무궁화 삼천리</td>
+				</tr>
+			</table>
+		</li>
+	</ul>
+	<p class="abc">
+		대한사람
+	</p>
+	<p>
+		대한으로
+	</p>
+
+</body>
+</html>
