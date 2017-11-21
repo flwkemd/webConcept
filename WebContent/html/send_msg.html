@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+	function mySend(){
+		//var msg = document.getElementById('msg').value;
+		var msg = $("#msg").val();
+		//location.href="../vs.do?msg="+msg;
+		location.href="../jsp/vs.jsp?msg="+msg;
+	}
+</script>
+</head>
+<body>
+	<input id="msg" placeholder="메세지를 입력하세요">
+	<input type="button" value="msg전송" onclick="mySend()">
+</body>
+</html>
