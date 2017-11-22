@@ -73,11 +73,15 @@
 		f.method = 'post';
 		f.action ="score_add.jsp"
 		f.submit();
-		
-		
-		
 	}
 	
+	function del(code){
+		location.href="score_del.jsp?code="+code;
+	}
+	
+	function modify(code){
+		location.href="score_modify.jsp?code="+code;
+	}
 	
 </script>
 
@@ -103,7 +107,10 @@
 				<td><%=vo.getMath() %></td>
 				<td><%=vo.getTotal() %></td>
 				<td><%=vo.getAverage() %></td>
-				<td></td>
+				<td>
+					<input type="button" value="삭제" onclick="del('<%=vo.getCode()%>')">
+					<input type="button" value="수정" onclick="modify(<%=vo.getCode()%>)">
+				</td>
 			</tr>
 			<%
 				}
