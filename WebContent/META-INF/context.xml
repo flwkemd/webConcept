@@ -2,11 +2,11 @@
 <Context>
 	<Resource
 		auth = "Container"
-		name = "jdbc/mysql_hr"
+		name = "jdbc/mysql_web_programing"
 		type = "javax.sql.DataSource"
 		driverClassName = "com.mysql.jdbc.Driver"
 		factory = "org.apache.commons.dbcp.BasicDataSourceFactory"
-		url = "jdbc:mysql://localhost:3307/hr"
+		url = "jdbc:mysql://localhost:3307/web_programing"
 		username = "root"
 		password = "root"
 		initialSize = "5" 
