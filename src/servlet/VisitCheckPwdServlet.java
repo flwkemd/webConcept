@@ -26,17 +26,17 @@ public class VisitCheckPwdServlet extends HttpServlet {
 		String pwd = request.getParameter("pwd");
 		VisitVo vo = VisitDao.getInstance().selectOne(idx);
 		
-		/*if(vo.getPwd().equals(pwd)) {
+		if(vo.getPwd().equals(pwd)) {
 			response.getWriter().write("yes");
 		}else {
 			response.getWriter().write("no");
-		}*/
+		}
 	
-		response.setContentType("text/xml; charset=utf-8");
+		/*response.setContentType("text/xml; charset=utf-8");
 		response.getWriter().write("<visit>");
 		response.getWriter().write("<name>"+vo.getName()+"</name>");
 		response.getWriter().write("<pwd>"+vo.getPwd()+"</pwd>");
-		response.getWriter().write("</visit>");
+		response.getWriter().write("</visit>");*/
 	}
 
 }

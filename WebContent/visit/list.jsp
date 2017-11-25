@@ -10,13 +10,31 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="../js/httpRequest.js"></script>
 <script>
-	function del(idx, pwd){
+	function del(idx){
 		var user_pwd = $("#c_pwd_"+idx).val();
-		if(pwd == user_pwd){
+		/* if(pwd == user_pwd){
 			location.href="delete.do?idx="+idx;
 		}else{
 			alert('비밀번호가 올바르지 않습니다.')
-		}
+		} */
+		
+		var url = "checkPwd.do";
+		var param = "idx="+idx+"&pwd="+user_pwd;
+		var method = "POST";
+		$.ajax({
+			"url":url,
+			"data":param,
+			"method":method,
+			"success":function(data){
+				if(data=='yes'){
+					location.href="delete.do?idx="+idx;
+				}else{
+					alert('비밀번호가 올바르지 않습니다.')
+				}
+				
+			}
+		});
+		
 	}
 
 	function update(idx){
@@ -93,7 +111,7 @@
 				<div class="pwd_style">
 					비밀번호:
 					<input size=10 id="c_pwd_${vo.idx }" type="password">
-					<input type="button" value="삭제" onclick="del('${vo.idx}','${vo.pwd }')">
+					<input type="button" value="삭제" onclick="del('${vo.idx}')">
 					<input type="button" value="수정" onclick="update('${vo.idx}')">
 					
 				</div>
