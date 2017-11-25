@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="../css/list.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="../js/httpRequest.js"></script>
 <script>
 	function del(idx, pwd){
 		var user_pwd = $("#c_pwd_"+idx).val();
@@ -18,16 +19,51 @@
 		}
 	}
 
-	function update(idx, pwd){
+	function update(idx){
 		var user_pwd = $("#c_pwd_"+idx).val();
-		if(pwd == user_pwd){
-			location.href="update.do?idx="+idx;
-		}else{
-			alert('비밀번호가 올바르지 않습니다.')
-		}
+		sendRequest("checkPwd.do", "idx="+idx+"&pwd="+user_pwd, "POST", resultFunc, true);
+		
+		function resultFunc(){
+			if(xhr.readyState == 4 && xhr.status == 200){
+				/* var result = xhr.responseText;
+				if(result == 'yes'){
+					location.href="update.do?idx="+idx;
+				}else{
+					alert("비밀번호가 올바르지 않습니다.")
+				} */
+				
+				var result = xhr.responseXML;
+				console.log(result);
+				
+				var resultDoc = result.documentElement;
+				console.log(resultDoc);
+				
+				var name = resultDoc.getElementByTagName("name");
+				console.log(name);
+				
+				var myName = name[0];
+				console.log(myName);
+				
+				var nameData = myName.firstChild;
+				console.log(nameData); // "홍길동"
+				console.log(nameData.data); //홍길동
+				
+				var pwd = xhr.responseXML.documentElement.getElementsByTagName("pwd")[0].fistChild.data;
+				console.log(pwd);
+				
+				if(user_pwd == pwd){
+					if(result == 'yes'){
+						location.href="update.do?idx="+idx;
+					}else{
+						alert("비밀번호가 올바르지 않습니다.")
+					}
+				}
+				
+			}
+			
+		}	
 	}
-	
-	
+		
 </script>
 </head>
 <body>
@@ -58,7 +94,7 @@
 					비밀번호:
 					<input size=10 id="c_pwd_${vo.idx }" type="password">
 					<input type="button" value="삭제" onclick="del('${vo.idx}','${vo.pwd }')">
-					<input type="button" value="수정" onclick="update('${vo.idx}','${vo.pwd }')">
+					<input type="button" value="수정" onclick="update('${vo.idx}')">
 					
 				</div>
 			</div>

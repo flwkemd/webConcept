@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+	function async(){
+		var xhr;
+		if(window.ActiveXObject == true){
+			xhr = new ActiveXObject("Microsoft.XMLHTTP");
+		}else{
+			xhr = new XMLHttpRequest();
+		}
+		
+		//var httpMethod = "GET";
+		var httpMethod = "POST";
+		var httpURL = "../async.do";
+		var httpParam = "id=홍길동";
+		//httpURL = http+"?"+httpParam;
+		
+		xhr.open(httpMethod, httpURL, true); // true- 비동기 방식
+		xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+		xhr.onreadystatechange = function(){
+			if(xhr.readyState == 4 && xhr.status == 200){ //xhr이 실행되고 , 정상적인 값을 받았을 때
+				var data = xhr.responseText;
+				$("#headline").text(data);
+			}
+		}
+		xhr.send(httpParam);
+		//xhr.send(null);
+	}
+	
+</script>
+</head>
+<body>
+	<h1 id="headline">현재 페이지는 메인페이지</h1>
+	<input type="button" value="동기식 통신" onclick="location.href='../sync.do'"><br>
+	<input type="button" value="비동기식 통신" onclick="async()"><br>
+	
+</body>
+</html>

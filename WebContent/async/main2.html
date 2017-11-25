@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="../js/httpRequest.js"></script>
+<script>
+	function async(){
+		var url = "../async.do";
+		var param = "pwd=1234";
+		var method = "POST";
+		var async = true;
+		sendRequest(url, param, method, resultFunc, async);
+	}
+	
+	function resultFunc(){
+		if(xhr.readyState == 4 && xhr.status == 200){
+			var data = xhr.responseText;
+			$("#headline").text(data.trim());
+		}
+	}
+	
+</script>
+</head>
+<body>
+	<h1 id="headline">현재 페이지는 메인페이지</h1>
+	<input type="button" value="동기식 통신" onclick="location.href='../sync.do'"><br>
+	<input type="button" value="비동기식 통신" onclick="async()"><br>
+	
+</body>
+</html>
