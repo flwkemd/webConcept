@@ -6,14 +6,20 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+
+import service.MyBatisConnector;
 import util.DBConnector2;
 import vo.VisitVo;
 
 public class VisitDao {
 
 	private static VisitDao single = null;
-
+	public SqlSessionFactory factory;
+	
 	private VisitDao() {
+		factory = MyBatisConnector.getInstance().getSqlSessionFactory();
 	}
 
 	public static VisitDao getInstance() {
@@ -25,7 +31,10 @@ public class VisitDao {
 
 	public List<VisitVo> selectList() {
 		List<VisitVo> list = new ArrayList<>();
-		Connection conn = null;
+		SqlSession ss = factory.openSession();
+		list = ss.selectList("visit.selectList");
+		
+		/*Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
@@ -57,14 +66,23 @@ public class VisitDao {
 			} catch (Exception e2) {
 				e2.printStackTrace();
 			}
-		}
+		}*/
 		
 		
+		ss.close();
 		return list;
 	}
 
 	public void insert(VisitVo vo) {
-		Connection conn = null;
+		int res = 0;
+		SqlSession ss = factory.openSession();
+		res = ss.insert("visit.insert", vo);
+		if(res == 1) {
+			ss.commit();
+		}
+		ss.close();
+		
+		/*Connection conn = null;
 		PreparedStatement pstmt = null;
 		
 		String sql = "insert into visit(name, content, ip, pwd, regdate)"+
@@ -89,12 +107,16 @@ public class VisitDao {
 			} catch (Exception e2) {
 				e2.printStackTrace();
 			}
-		}
+		}*/
 		
 	}
 
 	public void delete(int idx) {
-		Connection conn = null;
+		int res = 0;
+		SqlSession ss = factory.openSession(true);
+		res = ss.delete("visit.delete", idx);
+		ss.close();
+		/*Connection conn = null;
 		PreparedStatement pstmt = null;
 		
 		String sql = "delete from visit where idx=?";
@@ -114,13 +136,17 @@ public class VisitDao {
 			} catch (Exception e2) {
 				e2.printStackTrace();
 			}
-		}
+		}*/
 		
 	}
 
 	public VisitVo selectOne(int idx) {
 		VisitVo vo = new VisitVo();
-		Connection conn = null;
+		SqlSession ss = factory.openSession();
+		vo = ss.selectOne("visit.selectOne",idx);
+		ss.close();
+		
+		/*Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
@@ -153,12 +179,21 @@ public class VisitDao {
 				e2.printStackTrace();
 			}
 		}
-		
+		*/
 		return vo;
 	}
 
 	public void update(VisitVo vo) {
-		Connection conn = null;
+		int res=0;
+		SqlSession ss = factory.openSession();
+		res = ss.update("visit.update", vo);
+		if(res==1) {
+			ss.commit();
+		}
+		
+		ss.close();
+		
+		/*Connection conn = null;
 		PreparedStatement pstmt = null;
 		
 		String sql = "update visit set name=?, content=?, pwd=? where idx=?";
@@ -181,7 +216,7 @@ public class VisitDao {
 			} catch (Exception e2) {
 				e2.printStackTrace();
 			}
-		}
+		}*/
 		
 		
 	}
