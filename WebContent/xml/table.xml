@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE table SYSTEM "table.dtd">
+
+<table border="1" id="mytable">
+	<tr title="hi">
+		<th>
+			단순히 문자만 위치 가능
+		</th>
+		<td>
+			<table border="1"></table>
+			안녕하세요
+			<th></th>
+		</td>
+	</tr>
+	<caption></caption>
+</table>

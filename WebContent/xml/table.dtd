@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!ELEMENT table (tr*, caption?) >
+<!ATTLIST table border CDATA #REQUIRED>
+<!ATTLIST table id CDATA #IMPLIED>
+	<!ELEMENT tr (th, td+)>
+	<!ATTLIST tr class CDATA #IMPLIED>
+	<!ATTLIST tr title CDATA #REQUIRED>
+		<!ELEMENT th (#PCDATA)>
+		<!ELEMENT td (#PCDATA|table|th)*>
+	<!ELEMENT caption (#PCDATA)>

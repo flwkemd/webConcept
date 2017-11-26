@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE persons SYSTEM "person.dtd">
+
+<persons>
+	<person>
+		<name nickname="gildong1">일길동</name>
+		<age>33</age>
+		<tel hometel="02-111-111">010-1111-1111</tel>
+	</person>
+	<person>
+		<name nickname="gildong2">이길동</name>
+		<age>22</age>
+		<tel hometel="02-222-222">010-2222-2222</tel>
+	</person>
+	<person>
+		<name nickname="gildong3">삼길동</name>
+		<age>13</age>
+		<tel hometel="02-333-333">010-3333-3333</tel>
+	</person>
+</persons>
