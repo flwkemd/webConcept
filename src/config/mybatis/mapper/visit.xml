@@ -3,8 +3,22 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="visit">
-	<select id="selectList" resultType="vo.VisitVo">
-		select * from visit order by idx desc
+	<select id="selectList" resultType="vo.VisitVo" parameterType="Map">
+		select * from visit 
+		<if test="search_option != null">
+			<choose>
+				<when test="search_option == 'name'">
+					where name like concat('%', #{search_text},'%')
+				</when>
+				<when test="search_option == 'content'">
+					where content like concat('%', #{search_text},'%')
+				</when>
+				<otherwise>
+					where name like concat('%',#{search_text},'%') OR content like concat('%',#{search_text},'%') 
+				</otherwise>
+			</choose>
+		</if>
+		order by idx desc
 	</select>
 	<insert id="insert" parameterType="vo.VisitVo">
 		insert into visit(name, content, ip, pwd, regdate)

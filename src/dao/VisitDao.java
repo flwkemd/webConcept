@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -29,10 +30,10 @@ public class VisitDao {
 		return single;
 	}
 
-	public List<VisitVo> selectList() {
+	public List<VisitVo> selectList(Map<String, String> map) {
 		List<VisitVo> list = new ArrayList<>();
 		SqlSession ss = factory.openSession();
-		list = ss.selectList("visit.selectList");
+		list = ss.selectList("visit.selectList", map);
 		
 		/*Connection conn = null;
 		PreparedStatement pstmt = null;

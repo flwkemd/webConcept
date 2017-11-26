@@ -81,7 +81,19 @@
 			
 		}	
 	}
+	
+	function search(){
+		var search_option = $("#search_option").val();
+		var search_text = $("#search_text").val();
 		
+		if(search_option != 'all' && search_text == ''){
+			alert('검색어를 입력해주세요.');
+			return;
+		}
+		var param ="?search_option="+search_option+"$search_text="+search_text;
+		location.href =param;
+	}
+	
 </script>
 </head>
 <body>
@@ -89,6 +101,16 @@
 		<h1> ::: 방명록 리스트  :::</h1>
 		<div align="center">
 			<input type="button" value="글쓰기" onclick="location.href='insert_form.do'">
+		</div>
+		<div align="center">
+			<select id="search_option">
+				<option value="all">:::전체검색:::</option>
+				<option value="name">이름</option>
+				<option value="content">내용</option>
+				<option value="name_content">이름+내용</option>
+			</select>
+			<input type="text" id="search_text">
+			<input type="button" value="검색" onclick="search()">
 		</div>
 		<hr>
 		<!-- 데이터가 없는 경우 -->
