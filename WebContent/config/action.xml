@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE persons SYSTEM "action.dtd">
+<actions>
+	<action path="/visit/checkPwd.do" className="action.VisitCheckPwdAction">
+		<result></result>
+	</action>
+	<action path="/visit/delete.do" className="action.VisitDeleteAction">
+		<result type="redirect">list.do</result>
+	</action>
+	<action path="/visit/insert_form.do" className="action.VisitInsertFromAction">
+		<result>insert_form.jsp</result>
+	</action>
+	<action path="/visit/insert.do" className="action.VisitInertAction">
+		<result type="redirect">list.do</result>
+	</action>
+	<action path="/visit/list.do" className="action.VisitListAction">
+		<result>list.jsp</result>
+	</action>
+	
+
+	<!-- <action path="/visit1/list1.do" className="action.ListAction1" methodName="execute">
+		<result type="dispatcher">list1.jsp</result>
+	</action>
+	<action path="/visit1/view1.do" className="action.ViewAction1">
+		<result>view1.jsp</result>
+	</action>
+	<action path="/visit1/insert1.do" className="action.InsertAction1">
+		<result type="redirect">view1.jsp</result>
+	</action> -->
+	
+</actions>

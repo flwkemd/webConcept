@@ -1,6 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
   <display-name>webConcept</display-name>
+ <filter>
+ 	<filter-name>EncodingFilter</filter-name>
+ 	<filter-class>filter.EncodingFilter</filter-class>
+ </filter>
+ <filter-mapping>
+ 	<filter-name>EncodingFilter</filter-name>
+ 	<url-pattern>*</url-pattern>
+ </filter-mapping>
+  <servlet>
+  	<servlet-name>FrontController1</servlet-name>
+  	<servlet-class>controller.FrontController1</servlet-class>
+  	<init-param>
+  		<param-name>contextPath</param-name>
+  		<param-value>/config/</param-value>
+  	</init-param>
+  	<init-param>
+  		<param-name>contextFilename</param-name>
+  		<param-value>action.xml</param-value>
+  	</init-param>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>FrontController1</servlet-name>
+  	<url-pattern>/</url-pattern>
+  </servlet-mapping>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>
@@ -9,14 +33,4 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
-  <servlet>
-    <description> 개발자가 이 서블릿에 대한 설명을 적는 곳</description>
-    <display-name> 개발자가 이 서블릿의 별명을 적어놓는 곳</display-name>
-    <servlet-name>HelloServlet</servlet-name>
-    <servlet-class>servlet.HelloServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>HelloServlet</servlet-name>
-    <url-pattern>/hello</url-pattern>
-  </servlet-mapping>
 </web-app>
